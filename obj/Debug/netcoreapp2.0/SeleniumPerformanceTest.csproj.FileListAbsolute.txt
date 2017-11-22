@@ -1,0 +1,15 @@
+C:\Users\stearm01\Source\SlowSeleniumTest\bin\Debug\netcoreapp2.0\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+C:\Users\stearm01\Source\SlowSeleniumTest\bin\Debug\netcoreapp2.0\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+C:\Users\stearm01\Source\SlowSeleniumTest\bin\Debug\netcoreapp2.0\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+C:\Users\stearm01\Source\SlowSeleniumTest\bin\Debug\netcoreapp2.0\PhantomJS.exe
+C:\Users\stearm01\Source\SlowSeleniumTest\bin\Debug\netcoreapp2.0\TestPage.html
+C:\Users\stearm01\Source\SlowSeleniumTest\bin\Debug\netcoreapp2.0\SeleniumPerformanceTest.deps.json
+C:\Users\stearm01\Source\SlowSeleniumTest\bin\Debug\netcoreapp2.0\SeleniumPerformanceTest.runtimeconfig.json
+C:\Users\stearm01\Source\SlowSeleniumTest\bin\Debug\netcoreapp2.0\SeleniumPerformanceTest.runtimeconfig.dev.json
+C:\Users\stearm01\Source\SlowSeleniumTest\bin\Debug\netcoreapp2.0\SeleniumPerformanceTest.dll
+C:\Users\stearm01\Source\SlowSeleniumTest\bin\Debug\netcoreapp2.0\SeleniumPerformanceTest.pdb
+C:\Users\stearm01\Source\SlowSeleniumTest\obj\Debug\netcoreapp2.0\SeleniumPerformanceTest.csproj.CoreCompileInputs.cache
+C:\Users\stearm01\Source\SlowSeleniumTest\obj\Debug\netcoreapp2.0\SeleniumPerformanceTest.AssemblyInfoInputs.cache
+C:\Users\stearm01\Source\SlowSeleniumTest\obj\Debug\netcoreapp2.0\SeleniumPerformanceTest.AssemblyInfo.cs
+C:\Users\stearm01\Source\SlowSeleniumTest\obj\Debug\netcoreapp2.0\SeleniumPerformanceTest.dll
+C:\Users\stearm01\Source\SlowSeleniumTest\obj\Debug\netcoreapp2.0\SeleniumPerformanceTest.pdb
