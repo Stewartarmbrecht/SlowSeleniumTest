@@ -15,6 +15,7 @@
   <ItemGroup>
     <None Update="TestPage.html" CopyToOutputDirectory="PreserveNewest" />
     <None Update="phantomjs.exe" CopyToOutputDirectory="PreserveNewest" />
+    <None Update="phantomjs" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 
 </Project>

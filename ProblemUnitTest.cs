@@ -14,9 +14,15 @@ namespace SeleniumPerformanceTest
         public async Task TestMethod1()
         {
             var directory = System.IO.Directory.GetCurrentDirectory();
-            var path = "file:///" + directory + "\\TestPage.html";
+            bool isWindows = System.Runtime.InteropServices.RuntimeInformation
+                            .IsOSPlatform(System.Runtime.InteropServices.OSPlatform.Windows);
+            var path = "file:///" + directory + "//TestPage.html";
+            if(isWindows)
+            {
+                path = "file:///" + directory + "\\TestPage.html";
+            }
 
-            WebBrowser browser = new WebBrowser(WebDriver.Current);
+            WebBrowser browser = new WebBrowser(WebDriver.Current);            
             browser.Load(new PageLocation("Test Html Page", path));
             // there should be a section under the area name that displays feature statistics about the area
             await browser.WaitTillVisible(AreaFeatureStats.Section(3));
@@ -39,6 +45,8 @@ namespace SeleniumPerformanceTest
             browser.ElementStyleMatches(AreaFeatureStats.SkippedBar(3), ".*width: 33\\..*");
             // the failed, red bar should have a width of 33%
             browser.ElementStyleMatches(AreaFeatureStats.FailedBar(3), ".*width: 33\\..*");
+
+            WebDriver.Close();
         }
     }
 }

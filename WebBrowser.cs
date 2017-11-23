@@ -2,6 +2,8 @@ using System;
 using System.Threading.Tasks;
 using System.Diagnostics;
 using OpenQA.Selenium;
+using OpenQA.Selenium.PhantomJS;
+using OpenQA.Selenium.Support.UI;
 
 namespace SeleniumPerformanceTest
 {
@@ -24,7 +26,8 @@ namespace SeleniumPerformanceTest
         private IWebElement FindElementBySelector(string selector)
         {
             System.Diagnostics.Trace.TraceInformation("|"+DateTime.Now.ToString("HH:mm:ss.fff") + "|driver.FindElement(By.CssSelector(element.Selector)); Start " + selector);
-            IWebElement webElement = driver.FindElement(By.CssSelector(selector));
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+            IWebElement webElement = wait.Until(drv => drv.FindElement(By.CssSelector(selector)));
             System.Diagnostics.Trace.TraceInformation("|"+DateTime.Now.ToString("HH:mm:ss.fff") + "|driver.FindElement(By.CssSelector(element.Selector)); End");
             return webElement;
         }
