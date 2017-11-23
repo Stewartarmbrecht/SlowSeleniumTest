@@ -5686,11 +5686,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Users\\stearm01\\Source\\SlowSeleniumTest\\SeleniumPerformanceTest.csproj",
+      "projectUniqueName": "C:\\Users\\stearm01\\Source\\SlowSeleniumTest\\SeleniumPerformanceTest.csproj",
       "projectName": "SeleniumPerformanceTest",
-      "projectPath": "c:\\Users\\stearm01\\Source\\SlowSeleniumTest\\SeleniumPerformanceTest.csproj",
+      "projectPath": "C:\\Users\\stearm01\\Source\\SlowSeleniumTest\\SeleniumPerformanceTest.csproj",
       "packagesPath": "C:\\Users\\stearm01\\.nuget\\packages\\",
-      "outputPath": "c:\\Users\\stearm01\\Source\\SlowSeleniumTest\\obj\\",
+      "outputPath": "C:\\Users\\stearm01\\Source\\SlowSeleniumTest\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

@@ -13,3 +13,4 @@ C:\Users\stearm01\Source\SlowSeleniumTest\obj\Debug\netcoreapp2.0\SeleniumPerfor
 C:\Users\stearm01\Source\SlowSeleniumTest\obj\Debug\netcoreapp2.0\SeleniumPerformanceTest.AssemblyInfo.cs
 C:\Users\stearm01\Source\SlowSeleniumTest\obj\Debug\netcoreapp2.0\SeleniumPerformanceTest.dll
 C:\Users\stearm01\Source\SlowSeleniumTest\obj\Debug\netcoreapp2.0\SeleniumPerformanceTest.pdb
+C:\Users\stearm01\Source\SlowSeleniumTest\bin\Debug\netcoreapp2.0\TestPage.Simple.html

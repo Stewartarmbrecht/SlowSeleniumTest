@@ -2,6 +2,8 @@ using System;
 using System.Threading.Tasks;
 using System.Diagnostics;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Support;
+using OpenQA.Selenium.Support.UI;
 
 namespace SeleniumPerformanceTest
 {
@@ -75,6 +77,16 @@ namespace SeleniumPerformanceTest
             System.Diagnostics.Trace.TraceInformation("|"+DateTime.Now.ToString("HH:mm:ss.fff") + "|ElementHasTitle End");
         }
 
+        public Task WaitTillVisibleById(string id)
+        {
+            return Task.Run(() =>
+            {
+                System.Diagnostics.Trace.TraceInformation("|"+DateTime.Now.ToString("HH:mm:ss.fff") + "|WaitTillVisibleById Start " + id);
+                WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+                IWebElement webElement = wait.Until(driver => driver.FindElement(By.Id(id)));
+                System.Diagnostics.Trace.TraceInformation("|"+DateTime.Now.ToString("HH:mm:ss.fff") + "|WaitTillVisibleById End");
+            });
+        }
         public Task WaitTillVisible(PageElement element, int waitMilliseconds = -1)
         {
             return Task.Run(() =>
@@ -84,37 +96,40 @@ namespace SeleniumPerformanceTest
                 // driver.Manage().Timeouts().ImplicitWait = new TimeSpan(0);
                 // System.Diagnostics.Trace.TraceInformation("|"+DateTime.Now.ToString("HH:mm:ss.fff") + " Set ImplicitWait to 0 End");
 
-                if (waitMilliseconds == -1)
-                    waitMilliseconds = DefaultWait;
+                WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+                IWebElement webElement = wait.Until(driver => driver.FindElement(By.CssSelector(element.Selector)));
 
-                var webElement = FindElementBySelector(element.Selector);
+                // if (waitMilliseconds == -1)
+                //     waitMilliseconds = DefaultWait;
 
-                var visible = false;
-                Stopwatch sw = new Stopwatch();
-                sw.Start();
-                int passCount = 0;
-                while (sw.ElapsedMilliseconds < waitMilliseconds && visible == false)
-                {
-                    ++passCount;
-                    if(webElement == null)
-                    {
-                        webElement = FindElementBySelector(element.Selector);
-                    }
-                    if(webElement != null)
-                    {
-                        System.Diagnostics.Trace.TraceInformation("|"+DateTime.Now.ToString("HH:mm:ss.fff") + "| webElement.Displayed Start " + element.Selector);
-                        if (webElement.Displayed)
-                            visible = true;
-                        System.Diagnostics.Trace.TraceInformation("|"+DateTime.Now.ToString("HH:mm:ss.fff") + "| webElement.Displayed End");
-                    }
-                }
-                System.Diagnostics.Trace.TraceInformation("|"+DateTime.Now.ToString("HH:mm:ss.fff") + "|Pass Count = " + passCount.ToString());
+                // var webElement = FindElementBySelector(element.Selector);
 
-                if (webElement == null)
-                    throw new Exception("The web element (" + element.Description + " - " + element.Selector + ") was not found.");
+                // var visible = false;
+                // Stopwatch sw = new Stopwatch();
+                // sw.Start();
+                // int passCount = 0;
+                // while (sw.ElapsedMilliseconds < waitMilliseconds && visible == false)
+                // {
+                //     ++passCount;
+                //     if(webElement == null)
+                //     {
+                //         webElement = FindElementBySelector(element.Selector);
+                //     }
+                //     if(webElement != null)
+                //     {
+                //         System.Diagnostics.Trace.TraceInformation("|"+DateTime.Now.ToString("HH:mm:ss.fff") + "| webElement.Displayed Start " + element.Selector);
+                //         if (webElement.Displayed)
+                //             visible = true;
+                //         System.Diagnostics.Trace.TraceInformation("|"+DateTime.Now.ToString("HH:mm:ss.fff") + "| webElement.Displayed End");
+                //     }
+                // }
+                // System.Diagnostics.Trace.TraceInformation("|"+DateTime.Now.ToString("HH:mm:ss.fff") + "|Pass Count = " + passCount.ToString());
 
-                if (!visible)
-                    throw new Exception("The web element (" + element.Description + " - " + element.Selector + ") was not visible");
+                // if (webElement == null)
+                //     throw new Exception("The web element (" + element.Description + " - " + element.Selector + ") was not found.");
+
+                // if (!visible)
+                //     throw new Exception("The web element (" + element.Description + " - " + element.Selector + ") was not visible");
                 System.Diagnostics.Trace.TraceInformation("|"+DateTime.Now.ToString("HH:mm:ss.fff") + "|WaitTillVisible End");
             });
         }

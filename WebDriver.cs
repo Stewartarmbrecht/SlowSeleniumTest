@@ -16,8 +16,18 @@ namespace SeleniumPerformanceTest
 					if(webDriver == null)
 					{
 			            System.Diagnostics.Trace.TraceInformation("|"+DateTime.Now.ToString("HH:mm:ss.fff") + "|webDriver = new PhantomJSDriver(\".\\\"); Start");
-						webDriver = new PhantomJSDriver(".\\");
-			            System.Diagnostics.Trace.TraceInformation("|"+DateTime.Now.ToString("HH:mm:ss.fff") + "|webDriver = new PhantomJSDriver(\".\\\"); Start");
+						PhantomJSOptions options = new PhantomJSOptions();
+						options.PageLoadStrategy = PageLoadStrategy.Eager;
+						options.SetLoggingPreference("browser", LogLevel.All);
+						options.SetLoggingPreference("driver", LogLevel.All);
+						options.SetLoggingPreference("client", LogLevel.All);
+						options.SetLoggingPreference("performance", LogLevel.All);
+						options.SetLoggingPreference("server", LogLevel.All);
+						PhantomJSDriverService service = PhantomJSDriverService.CreateDefaultService(".\\");
+						service.LogFile = ".\\mylogs.txt";
+						webDriver = new PhantomJSDriver(service,options);
+						
+			            System.Diagnostics.Trace.TraceInformation("|"+DateTime.Now.ToString("HH:mm:ss.fff") + "|webDriver = new PhantomJSDriver(\".\\\"); End");
 					}
 					return webDriver;
 				}
