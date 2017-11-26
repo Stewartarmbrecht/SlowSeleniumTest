@@ -40,3 +40,29 @@ Below are the times running the test on Windows 10.
  Below are the times for running the tests on a mac.
  
  # Mac Results
+
+## Validate Areas 
+
+<table><tr><th>Milliseconds</th><th>Code</th></tr>
+<tr><td>1507</td><td>webDriver = new PhantomJSDriver();</td></tr>
+<tr><td>1030</td><td>driver.Url = location.Url;</td></tr>
+<tr><td>224</td><td>wait.Until(driver => driver.FindElement(By.Id(id))); area-3-feature-stats</td></tr>
+<tr><td>211</td><td>wait.Until(driver => driver.FindElement(By.CssSelector(element.Selector))); #area-3 span.badge.total</td></tr>
+<tr><td>207</td><td>driver.FindElement(By.CssSelector(selector)); #area-3 span.badge.total</td></tr>
+<tr><td>207</td><td>driver.FindElement(By.CssSelector(selector)); #area-3 span.badge.total</td></tr>
+<tr><td>210</td><td>webElement.GetAttribute("title");</td></tr>
+<tr><td>210</td><td>driver.FindElement(By.CssSelector(selector)); #area-3-feature-stats td.passed</td></tr>
+<tr><td>211</td><td>driver.FindElement(By.CssSelector(selector)); #area-3-feature-stats td.skipped</td></tr>
+<tr><td>215</td><td>driver.FindElement(By.CssSelector(selector)); #area-3-feature-stats td.failed</td></tr>
+<tr><td>212</td><td>wait.Until(driver => driver.FindElement(By.CssSelector(element.Selector))); #area-3-feature-stats td.outcome-bar-chart</td></tr>
+<tr><td>211</td><td>driver.FindElement(By.CssSelector(selector)); #area-3-feature-stats td.passed-bar</td></tr>
+<tr><td>210</td><td>driver.FindElement(By.CssSelector(selector)); #area-3-feature-stats td.skipped-bar</td></tr>
+<tr><td>210</td><td>driver.FindElement(By.CssSelector(selector)); #area-3-feature-stats td.failed-bar</td></tr>
+</table>
+ 
+## Validate Areas Simple 
+
+<table><tr><th>Milliseconds</th><th>Code</th></tr>
+<tr><td>215</td><td>driver.Url = location.Url;</td></tr>
+<tr><td>207</td><td>wait.Until(driver => driver.FindElement(By.Id(id))); area-3-feature-stats</td></tr>
+</table>

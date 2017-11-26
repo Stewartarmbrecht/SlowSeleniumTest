@@ -42,7 +42,6 @@ namespace SeleniumPerformanceTest
             // the failed, red bar should have a width of 33%
             browser.ElementStyleMatches(AreaFeatureStats.FailedBar(3), ".*width: 33\\..*");
 
-            WebDriver.Close();
             System.Diagnostics.Trace.TraceInformation("</table>");
         }
         [TestMethod]

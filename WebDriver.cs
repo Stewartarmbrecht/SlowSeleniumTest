@@ -1,6 +1,8 @@
 using System;
 using OpenQA.Selenium;
 using OpenQA.Selenium.PhantomJS;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+
 namespace SeleniumPerformanceTest
 {
 	public class WebDriver
@@ -24,6 +26,7 @@ namespace SeleniumPerformanceTest
 			}
 		} 
 		
+		[AssemblyCleanup]
 		public static void Close()
 		{
 			if(webDriver != null)
