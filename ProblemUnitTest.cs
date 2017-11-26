@@ -11,21 +11,17 @@ namespace SeleniumPerformanceTest
     public class ProblemUnitTest
     {
         [TestMethod]
-        public async Task TestMethod1()
+        public async Task ValidateAreas()
         {
             var directory = System.IO.Directory.GetCurrentDirectory();
-            bool isWindows = System.Runtime.InteropServices.RuntimeInformation
-                            .IsOSPlatform(System.Runtime.InteropServices.OSPlatform.Windows);
-            var path = "file:///" + directory + "//TestPage.html";
-            if(isWindows)
-            {
-                path = "file:///" + directory + "\\TestPage.html";
-            }
+            var path = "file:///" + directory + System.IO.Path.DirectorySeparatorChar + "TestPage.html";
+
+            System.Diagnostics.Trace.TraceInformation("<table><tr><th>Milliseconds</th><th>Code</th></tr>");
 
             WebBrowser browser = new WebBrowser(WebDriver.Current);            
             browser.Load(new PageLocation("Test Html Page", path));
             // there should be a section under the area name that displays feature statistics about the area
-            await browser.WaitTillVisible(AreaFeatureStats.Section(3));
+            await browser.WaitTillVisibleById("area-3-feature-stats");
             // the total number of features should show as a badge to the right of the area name with a value of 3
             await browser.WaitTillVisible(AreaFeatureStats.Total(3));
             browser.ElementHasText(AreaFeatureStats.Total(3), "3");
@@ -47,6 +43,22 @@ namespace SeleniumPerformanceTest
             browser.ElementStyleMatches(AreaFeatureStats.FailedBar(3), ".*width: 33\\..*");
 
             WebDriver.Close();
+            System.Diagnostics.Trace.TraceInformation("</table>");
+        }
+        [TestMethod]
+        public async Task ValidateAreasSimple()
+        {
+            var directory = System.IO.Directory.GetCurrentDirectory();
+            var path = "file:///" + directory + System.IO.Path.DirectorySeparatorChar + "TestPage.Simple.html";
+
+            System.Diagnostics.Trace.TraceInformation("<table><tr><th>Milliseconds</th><th>Code</th></tr>");
+
+            WebBrowser browser = new WebBrowser(WebDriver.Current);
+            browser.Load(new PageLocation("Test Html Page", path));
+            // there should be a section under the area name that displays feature statistics about the area
+            await browser.WaitTillVisibleById("area-3-feature-stats");
+            // the total number of features should show as a badge to the right of the area name with a value of 3
+            System.Diagnostics.Trace.TraceInformation("</table>");
         }
     }
 }
