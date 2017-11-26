@@ -15,24 +15,9 @@ namespace SeleniumPerformanceTest
 				{
 					if(webDriver == null)
 					{
-<<<<<<< HEAD
-			            System.Diagnostics.Trace.TraceInformation("|"+DateTime.Now.ToString("HH:mm:ss.fff") + "|webDriver = new PhantomJSDriver(\".\\\"); Start");
-						bool isWindows = System.Runtime.InteropServices.RuntimeInformation
-                                               .IsOSPlatform(System.Runtime.InteropServices.OSPlatform.Windows);
-						if(isWindows)
-						{
-							webDriver = new PhantomJSDriver(".\\");
-						}
-						else
-						{
-							webDriver = new PhantomJSDriver(".");
-						}
-			            System.Diagnostics.Trace.TraceInformation("|"+DateTime.Now.ToString("HH:mm:ss.fff") + "|webDriver = new PhantomJSDriver(\".\\\"); End");
-=======
 						Logger.Log(() => {
 							webDriver = new PhantomJSDriver(".");
 						},"webDriver = new PhantomJSDriver();");
->>>>>>> 8d7242a99e9bacb7f3198725c7f303007f689e74
 					}
 					return webDriver;
 				}
@@ -43,17 +28,6 @@ namespace SeleniumPerformanceTest
 		{
 			if(webDriver != null)
 			{
-<<<<<<< HEAD
-				System.Diagnostics.Trace.TraceInformation("|"+DateTime.Now.ToString("HH:mm:ss.fff") + "|webDriver.Close(); Start");
-				webDriver.Close();
-				System.Diagnostics.Trace.TraceInformation("|"+DateTime.Now.ToString("HH:mm:ss.fff") + "|webDriver.Close(); End");
-				System.Diagnostics.Trace.TraceInformation("|"+DateTime.Now.ToString("HH:mm:ss.fff") + "|webDriver.Quit(); Start");
-				webDriver.Quit();
-				System.Diagnostics.Trace.TraceInformation("|"+DateTime.Now.ToString("HH:mm:ss.fff") + "|webDriver.Quit(); End");
-				System.Diagnostics.Trace.TraceInformation("|"+DateTime.Now.ToString("HH:mm:ss.fff") + "|webDriver.Dispose(); Start");
-				webDriver.Dispose();
-				System.Diagnostics.Trace.TraceInformation("|"+DateTime.Now.ToString("HH:mm:ss.fff") + "|webDriver.Dispose(); End");
-=======
 				Logger.Log(() => {
 					webDriver.Close();
 				},"webDriver.Close();");
@@ -63,7 +37,6 @@ namespace SeleniumPerformanceTest
 				Logger.Log(() => {
 					webDriver.Dispose();
 				},"webDriver.Dispose();");
->>>>>>> 8d7242a99e9bacb7f3198725c7f303007f689e74
 			}
 		}
 	}
