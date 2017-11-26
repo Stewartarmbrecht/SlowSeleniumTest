@@ -14,7 +14,9 @@ namespace SeleniumPerformanceTest
         public async Task ValidateAreas()
         {
             var directory = System.IO.Directory.GetCurrentDirectory();
-            var path = "file:///" + directory + "\\TestPage.html";
+            var path = "file:///" + directory + System.IO.Path.DirectorySeparatorChar + "TestPage.html";
+
+            System.Diagnostics.Trace.TraceInformation("<table><tr><th>Milliseconds</th><th>Code</th></tr>");
 
             WebBrowser browser = new WebBrowser(WebDriver.Current);
             browser.Load(new PageLocation("Test Html Page", path));
@@ -40,34 +42,7 @@ namespace SeleniumPerformanceTest
             // the failed, red bar should have a width of 33%
             browser.ElementStyleMatches(AreaFeatureStats.FailedBar(3), ".*width: 33\\..*");
 
-            // System.Diagnostics.Trace.TraceInformation("Client Logs");
-            // var logs = WebDriver.Current.Manage().Logs.GetLog("client");
-            // foreach(var logEntry in logs) 
-            // {
-            //     System.Diagnostics.Trace.TraceInformation("|" + logEntry.Timestamp + "|" + logEntry.Message);
-            // }
-
-            System.Diagnostics.Trace.TraceInformation("browser Logs");
-            var logs = WebDriver.Current.Manage().Logs.GetLog("browser");
-            foreach(var logEntry in logs) 
-            {
-                System.Diagnostics.Trace.TraceInformation("|" + logEntry.Timestamp + "|" + logEntry.Message);
-            }
-
-            // System.Diagnostics.Trace.TraceInformation("Driver Logs");
-            // logs = WebDriver.Current.Manage().Logs.GetLog("driver");
-            // foreach(var logEntry in logs) 
-            // {
-            //     System.Diagnostics.Trace.TraceInformation("|" + logEntry.Timestamp + "|" + logEntry.Message);
-            // }
-
-            // System.Diagnostics.Trace.TraceInformation("Server Logs");
-            // logs = WebDriver.Current.Manage().Logs.GetLog("server");
-            // foreach(var logEntry in logs) 
-            // {
-            //     System.Diagnostics.Trace.TraceInformation("|" + logEntry.Timestamp + "|" + logEntry.Message);
-            // }
-
+            System.Diagnostics.Trace.TraceInformation("</table>");
         }
         [TestMethod]
         public async Task ValidateAreasSimple()
@@ -75,11 +50,14 @@ namespace SeleniumPerformanceTest
             var directory = System.IO.Directory.GetCurrentDirectory();
             var path = "file:///" + directory + "\\TestPage.Simple.html";
 
+            System.Diagnostics.Trace.TraceInformation("<table><tr><th>Milliseconds</th><th>Code</th></tr>");
+
             WebBrowser browser = new WebBrowser(WebDriver.Current);
             browser.Load(new PageLocation("Test Html Page", path));
             // there should be a section under the area name that displays feature statistics about the area
             await browser.WaitTillVisibleById("area-3-feature-stats");
             // the total number of features should show as a badge to the right of the area name with a value of 3
+            System.Diagnostics.Trace.TraceInformation("</table>");
         }
     }
 }

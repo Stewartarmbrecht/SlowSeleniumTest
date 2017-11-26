@@ -18,22 +18,21 @@ namespace SeleniumPerformanceTest
         
         public void Load(PageLocation location)
         {
-            System.Diagnostics.Trace.TraceInformation("|"+DateTime.Now.ToString("HH:mm:ss.fff") + "|driver.Url = location.Url; Start " + location.Url.ToString());
-            driver.Url = location.Url;
-            System.Diagnostics.Trace.TraceInformation("|"+DateTime.Now.ToString("HH:mm:ss.fff") + "|driver.Url = location.Url; End" + location.Url.ToString());
+            Logger.Log(() => {
+                driver.Url = location.Url;
+            }, "driver.Url = location.Url;");
         }
 
         private IWebElement FindElementBySelector(string selector)
         {
-            System.Diagnostics.Trace.TraceInformation("|"+DateTime.Now.ToString("HH:mm:ss.fff") + "|driver.FindElement(By.CssSelector(element.Selector)); Start " + selector);
-            IWebElement webElement = driver.FindElement(By.CssSelector(selector));
-            System.Diagnostics.Trace.TraceInformation("|"+DateTime.Now.ToString("HH:mm:ss.fff") + "|driver.FindElement(By.CssSelector(element.Selector)); End");
-            return webElement;
+            return Logger.Log<IWebElement>(() => {
+                IWebElement webElement = driver.FindElement(By.CssSelector(selector));
+                return webElement;
+            },"driver.FindElement(By.CssSelector(selector)); "+ selector);
         }
         
         public void ElementHasText(PageElement element, string text)
         {
-            System.Diagnostics.Trace.TraceInformation("|"+DateTime.Now.ToString("HH:mm:ss.fff") + "|ElementHasText Start");
             var webElement = FindElementBySelector(element.Selector);
             if (webElement == null)
                 throw new Exception("The web element (" + element.Description + " - " + element.Selector + ") was not found.");
@@ -41,15 +40,13 @@ namespace SeleniumPerformanceTest
             {
                 var foundText = webElement.Text;
                 if(foundText.CompareTo(text) != 0)
-                   throw new Exception("The web element (" + element.Description + " - " + element.Selector + ") did not have text '" + text + "' it was '" + foundText + "'.");
+                throw new Exception("The web element (" + element.Description + " - " + element.Selector + ") did not have text '" + text + "' it was '" + foundText + "'.");
                 
             }
-            System.Diagnostics.Trace.TraceInformation("|"+DateTime.Now.ToString("HH:mm:ss.fff") + "|ElementHasText End");
         }
 
         public void ElementStyleMatches(PageElement element, string styleRegEx)
         {
-            System.Diagnostics.Trace.TraceInformation("|"+DateTime.Now.ToString("HH:mm:ss.fff") + "|ElementStyleMatches Start " + element.Selector);
             var webElement = FindElementBySelector(element.Selector);
             if (webElement == null)
                 throw new Exception("The web element (" + element.Description + " - " + element.Selector + ") was not found.");
@@ -59,78 +56,42 @@ namespace SeleniumPerformanceTest
                 if(!System.Text.RegularExpressions.Regex.Match(styleFound, styleRegEx).Success)
                    throw new Exception("The web element (" + element.Description + " - " + element.Selector + ") did not have a style that matched '" + styleRegEx + "' it was '" + styleFound + "'.");
             }
-            System.Diagnostics.Trace.TraceInformation("|"+DateTime.Now.ToString("HH:mm:ss.fff") + "|ElementStyleMatches End");
         }
 
         public void ElementHasTitle(PageElement element, string title)
         {
-            System.Diagnostics.Trace.TraceInformation("|"+DateTime.Now.ToString("HH:mm:ss.fff") + "|ElementHasTitle Start " + element.Selector);
             var webElement = FindElementBySelector(element.Selector);
             if (webElement == null)
                 throw new Exception("The web element (" + element.Description + " - " + element.Selector + ") was not found.");
             else
             {
-                string titleFound = webElement.GetAttribute("title"); 
+                var titleFound = Logger.Log<string>(() => {
+                    return webElement.GetAttribute("title"); 
+                }, "webElement.GetAttribute(\"title\");");
+            
                 if(titleFound != title)
                    throw new Exception("The web element (" + element.Description + " - " + element.Selector + ") did not have text '" + title + "' it was '" + titleFound + "'.");
             }
-            System.Diagnostics.Trace.TraceInformation("|"+DateTime.Now.ToString("HH:mm:ss.fff") + "|ElementHasTitle End");
         }
 
         public Task WaitTillVisibleById(string id)
         {
             return Task.Run(() =>
             {
-                System.Diagnostics.Trace.TraceInformation("|"+DateTime.Now.ToString("HH:mm:ss.fff") + "|WaitTillVisibleById Start " + id);
-                WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-                IWebElement webElement = wait.Until(driver => driver.FindElement(By.Id(id)));
-                System.Diagnostics.Trace.TraceInformation("|"+DateTime.Now.ToString("HH:mm:ss.fff") + "|WaitTillVisibleById End");
+                Logger.Log(() => {
+                    WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+                    IWebElement webElement = wait.Until(driver => driver.FindElement(By.Id(id)));
+                }, "wait.Until(driver => driver.FindElement(By.Id(id))); " + id);
             });
         }
         public Task WaitTillVisible(PageElement element, int waitMilliseconds = -1)
         {
             return Task.Run(() =>
             {
-                System.Diagnostics.Trace.TraceInformation("|"+DateTime.Now.ToString("HH:mm:ss.fff") + "|WaitTillVisible Start " + element.Selector);
-                // System.Diagnostics.Trace.TraceInformation("|"+DateTime.Now.ToString("HH:mm:ss.fff") + " Set ImplicitWait to 0 Start");
-                // driver.Manage().Timeouts().ImplicitWait = new TimeSpan(0);
-                // System.Diagnostics.Trace.TraceInformation("|"+DateTime.Now.ToString("HH:mm:ss.fff") + " Set ImplicitWait to 0 End");
-
-                WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-                IWebElement webElement = wait.Until(driver => driver.FindElement(By.CssSelector(element.Selector)));
-
-                // if (waitMilliseconds == -1)
-                //     waitMilliseconds = DefaultWait;
-
-                // var webElement = FindElementBySelector(element.Selector);
-
-                // var visible = false;
-                // Stopwatch sw = new Stopwatch();
-                // sw.Start();
-                // int passCount = 0;
-                // while (sw.ElapsedMilliseconds < waitMilliseconds && visible == false)
-                // {
-                //     ++passCount;
-                //     if(webElement == null)
-                //     {
-                //         webElement = FindElementBySelector(element.Selector);
-                //     }
-                //     if(webElement != null)
-                //     {
-                //         System.Diagnostics.Trace.TraceInformation("|"+DateTime.Now.ToString("HH:mm:ss.fff") + "| webElement.Displayed Start " + element.Selector);
-                //         if (webElement.Displayed)
-                //             visible = true;
-                //         System.Diagnostics.Trace.TraceInformation("|"+DateTime.Now.ToString("HH:mm:ss.fff") + "| webElement.Displayed End");
-                //     }
-                // }
-                // System.Diagnostics.Trace.TraceInformation("|"+DateTime.Now.ToString("HH:mm:ss.fff") + "|Pass Count = " + passCount.ToString());
-
-                // if (webElement == null)
-                //     throw new Exception("The web element (" + element.Description + " - " + element.Selector + ") was not found.");
-
-                // if (!visible)
-                //     throw new Exception("The web element (" + element.Description + " - " + element.Selector + ") was not visible");
-                System.Diagnostics.Trace.TraceInformation("|"+DateTime.Now.ToString("HH:mm:ss.fff") + "|WaitTillVisible End");
+                Logger.Log(() => {
+                    WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+                    IWebElement webElement = wait.Until(driver => driver.FindElement(By.CssSelector(element.Selector)));
+                }, "wait.Until(driver => driver.FindElement(By.CssSelector(element.Selector))); " + element.Selector);
             });
         }
     }

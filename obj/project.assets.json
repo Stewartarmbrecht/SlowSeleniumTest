@@ -5680,23 +5680,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\stearm01\\.nuget\\packages\\": {},
+    "C:\\Users\\StewartArmbrecht\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\stearm01\\Source\\SlowSeleniumTest\\SeleniumPerformanceTest.csproj",
+      "projectUniqueName": "C:\\Users\\StewartArmbrecht\\Source\\SlowSeleniumTest\\SeleniumPerformanceTest.csproj",
       "projectName": "SeleniumPerformanceTest",
-      "projectPath": "C:\\Users\\stearm01\\Source\\SlowSeleniumTest\\SeleniumPerformanceTest.csproj",
-      "packagesPath": "C:\\Users\\stearm01\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\stearm01\\Source\\SlowSeleniumTest\\obj\\",
+      "projectPath": "C:\\Users\\StewartArmbrecht\\Source\\SlowSeleniumTest\\SeleniumPerformanceTest.csproj",
+      "packagesPath": "C:\\Users\\StewartArmbrecht\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\StewartArmbrecht\\Source\\SlowSeleniumTest\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\stearm01\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\StewartArmbrecht\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

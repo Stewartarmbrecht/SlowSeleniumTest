@@ -15,19 +15,9 @@ namespace SeleniumPerformanceTest
 				{
 					if(webDriver == null)
 					{
-			            System.Diagnostics.Trace.TraceInformation("|"+DateTime.Now.ToString("HH:mm:ss.fff") + "|webDriver = new PhantomJSDriver(\".\\\"); Start");
-						PhantomJSOptions options = new PhantomJSOptions();
-						options.PageLoadStrategy = PageLoadStrategy.Eager;
-						options.SetLoggingPreference("browser", LogLevel.All);
-						options.SetLoggingPreference("driver", LogLevel.All);
-						options.SetLoggingPreference("client", LogLevel.All);
-						options.SetLoggingPreference("performance", LogLevel.All);
-						options.SetLoggingPreference("server", LogLevel.All);
-						PhantomJSDriverService service = PhantomJSDriverService.CreateDefaultService(".\\");
-						service.LogFile = ".\\mylogs.txt";
-						webDriver = new PhantomJSDriver(service,options);
-						
-			            System.Diagnostics.Trace.TraceInformation("|"+DateTime.Now.ToString("HH:mm:ss.fff") + "|webDriver = new PhantomJSDriver(\".\\\"); End");
+						Logger.Log(() => {
+							webDriver = new PhantomJSDriver(".");
+						},"webDriver = new PhantomJSDriver();");
 					}
 					return webDriver;
 				}
@@ -38,10 +28,15 @@ namespace SeleniumPerformanceTest
 		{
 			if(webDriver != null)
 			{
-				Console.WriteLine("Shutting down PhantomJSDriver.");
-				webDriver.Close();
-				webDriver.Quit();
-				webDriver.Dispose();
+				Logger.Log(() => {
+					webDriver.Close();
+				},"webDriver.Close();");
+				Logger.Log(() => {
+					webDriver.Quit();
+				},"webDriver.Quit();");
+				Logger.Log(() => {
+					webDriver.Dispose();
+				},"webDriver.Dispose();");
 			}
 		}
 	}
